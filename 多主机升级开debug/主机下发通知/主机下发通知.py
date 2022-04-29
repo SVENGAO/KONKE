@@ -16,11 +16,13 @@ def Notion_CCU():
 	for i in a:  # I 代表主机号
 		# print(i)
 		if i != '':
-			logging.info(i)
+			# logging.info(i)
 			# 测试服
 			if a[i] == 'test':
+				logging.info("测试环境主机%s", i)
 				url = "http://ops-test.nj-ikonke.site:1080/api/info/ccu" + i + "/notifyCcuUpgrade"
 			else:
+				logging.info("正式环境主机%s", i)
 				url = "https://iot-ops.ikonke.com/api/info/ccu/" + i + "/notifyCcuUpgrade"
 			r = requests.get(url).json()
 			if 'code' in r:
@@ -40,10 +42,12 @@ def Getversion_CCU():
 	for i in a:  # I 代表主机号
 		# print(i)
 		if i != '':
-			logging.info(i)
+			# logging.info(i)
 			if a[i] == 'test':
+				logging.info("测试环境主机%s", i)
 				url1 = "http://ops-test.nj-ikonke.site:1080/api/info/ccu/ccuInfo"
 			else:
+				logging.info("正式环境主机%s", i)
 				url1 = "https://iot-ops.ikonke.com/api/info/ccu/ccuInfo"
 			data = {"projectId": "1", "ccuId": i}
 			r2 = requests.post(url1, json=data).json()
