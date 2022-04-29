@@ -7,16 +7,20 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s: %(m
 # """
 # 使用前去json文件中更改主机号，主机类型，主机服务器环境
 # """
-P12_6729 = 'wget -O /tmp/kk-9531-ap86-key.bin http://web.nj-ikonke.site:20001/ccu_package/kkfirmware/ap86-key-p12/2.67.29/20220422144525/kk-9531-ap86-key.bin;sleep 3;sysupgrade /tmp/kk-9531-ap86-key.bin'
+P12_6730 = 'wget -O /tmp/kk-9531-ap86-key.bin http://web.nj-ikonke.site:20001/ccu_package/kkfirmware/ap86-key-p12/2.67.30/20220428205403/kk-9531-ap86-key.bin;sleep 3;sysupgrade /tmp/kk-9531-ap86-key.bin'
 P8_6725 = 'wget -O /tmp/kk-9531-dtgw.bin http://web.nj-ikonke.site:20001/ccu_package/kkfirmware/ap86-dt-p8/2.67.25/20220329160806/kk-9531-dtgw.bin;sleep 3;sysupgrade /tmp/kk-9531-dtgw.bin'
-P8_6008 = 'wget -O /tmp/kk-9531-dtgw.bin http://web.nj-ikonke.site:20001/ccu_package/kkfirmware/ap86-dt-p8/2.60.8/20210608143302/kk-9531-dtgw.bin;sleep 3;mtd -r write /tmp/kk-9531-dtgw.bin firmware'
+P8_6730 = 'wget -O /tmp/kk-9531-dtgw.bin http://web.nj-ikonke.site:20001/ccu_package/kkfirmware/ap86-dt-p8/2.67.30/20220428204134/kk-9531-dtgw.bin;sleep 3;sysupgrade /tmp/kk-9531-dtgw.bin'
+
 repairDb_updateCcu = 'cd /tmp/;wget http://file.nj-ikonke.site:8096/index.php/s/ggKJxmyynerP8EA/download/repairDb_updateCcu.sh;sleep 2;sh repairDb_updateCcu.sh'
 #  自定义查询命令
-P14_6725 = 'wget -O /tmp/KK-CC-E86.bin http://web.nj-ikonke.site:20001/ccu_package/kkfirmware/KK-CC-E86-p14/2.67.25/20220329161326/KK-CC-E86.bin;sleep 3;mtd -r write /tmp/KK-CC-E86.bin firmware'
-P14_6008 = 'wget -O /tmp/KK-CC-E86.bin http://web.nj-ikonke.site:20001/ccu_package/kkfirmware/KK-CC-E86-p14/2.60.8/20210622194552/KK-CC-E86.bin;sleep 3;mtd -r write /tmp/KK-CC-E86.bin firmware'
-P14_5617 = 'wget -O /tmp/KK-CC-E86.bin http://web.nj-ikonke.site:20001/ccu_package/kkfirmware/KK-CC-E86-p14/2.56.17/20210115142416/KK-CC-E86.bin;sleep 3;mtd -r write /tmp/KK-CC-E86.bin firmware'
 
-ssh_cmd = P14_6725
+P15_6730 = 'wget -O /tmp/KK-CC-J86.bin http://web.nj-ikonke.site:20001/ccu_package/kkfirmware/KK-CC-J86-p15/2.67.30/20220428204509/KK-CC-J86.bin;sleep 3;sysupgrade /tmp/KK-CC-J86.bin'
+
+P14_6725 = 'wget -O /tmp/KK-CC-E86.bin http://web.nj-ikonke.site:20001/ccu_package/kkfirmware/KK-CC-E86-p14/2.67.25/20220329161326/KK-CC-E86.bin;sleep 3;sysupgrade /tmp/KK-CC-E86.bin'
+P14_6008 = 'wget -O /tmp/KK-CC-E86.bin http://web.nj-ikonke.site:20001/ccu_package/kkfirmware/KK-CC-E86-p14/2.60.8/20210622194552/KK-CC-E86.bin;sleep 3;sysupgrade /tmp/KK-CC-E86.bin'
+P14_5617 = 'wget -O /tmp/KK-CC-E86.bin http://web.nj-ikonke.site:20001/ccu_package/kkfirmware/KK-CC-E86-p14/2.56.17/20210115142416/KK-CC-E86.bin;sleep 3;sysupgrade /tmp/KK-CC-E86.bin'
+P14_6730 = 'wget -O /tmp/KK-CC-E86.bin http://web.nj-ikonke.site:20001/ccu_package/kkfirmware/KK-CC-E86-p14/2.67.30/20220428204750/KK-CC-E86.bin;sleep 3;sysupgrade /tmp/KK-CC-E86.bin'
+ssh_cmd = P8_6730
 
 
 def get_CCU():

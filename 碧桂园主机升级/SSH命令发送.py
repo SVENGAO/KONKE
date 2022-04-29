@@ -9,12 +9,15 @@ def SSHUPGRADE(port, cmd, zj_type):
 	拿到主机远程端口号，使用ssh升级命令
 
 	"""
-	if zj_type == "zr" or "智睿":
+	if zj_type == '智睿':
 		username = "hj"
 		password = "hjnjsds8899"
-	else:
+	elif zj_type == '9531':
 		username = 'root'
 		password = "p9z34c"
+	else:
+		logging.info("填写主机类型%s参数错误，智睿或者9531" % zj_type)
+
 	try:
 		ssh = paramiko.SSHClient()
 		# 允许将信任的主机自动加入到host_allow 列表，此方法必须放在connect方法的前面
@@ -31,6 +34,5 @@ def SSHUPGRADE(port, cmd, zj_type):
 	except Exception as e:
 		print(e)
 
-
-if __name__ == '__main__':
-	SSHUPGRADE(port='', cmd='', zj_type='')
+	if __name__ == '__main__':
+		SSHUPGRADE(port='', cmd='', zj_type='')
