@@ -174,6 +174,7 @@ def Get_license(k):
 def socket_client(env):
 	"""
 	客户端 发送socket功能
+	env：主机环境
 	"""
 	try:
 		s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
