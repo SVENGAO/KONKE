@@ -226,8 +226,24 @@ def socket_client(env):
 	# s.send(NEW_VERSION_NOTIFY.encode('utf-8'))
 	# logging.info('NEW_VERSION_NOTIFY:%s', NEW_VERSION_NOTIFY.encode('utf-8'))
 	# 9、SET_ZIGBEE_GROUP
-	s.send(SET_ZIGBEE_GROUP.encode('utf-8'))
-	logging.info('SET_ZIGBEE_GROUP:%s', SET_ZIGBEE_GROUP.encode('utf-8'))
+	tt1 = 55
+	tt2 = 25
+	while tt2 <= tt1:
+		time.sleep(10)
+		print(tt2)
+		tt3 = str(tt2)
+		SET_ZIGBEE_GROUP1 = "!{\"arg\":{\"id\":\"" + tt3 + "\",\"name\":\"" + tt3 + "\",\"nodes\":[{\"nodeid\":\"527\"},{\"nodeid\":\"528\"}],\"room_id\":\"1\"},\"nodeid\":\"*\",\"opcode\":\"SET_ZIGBEE_GROUP\",\"requester\":\"HJ_Config\"}$"
+		# print(SET_ZIGBEE_GROUP1)
+		# tt2 += 1
+		# SET_ZIGBEE_GROUP1 = "!{\"arg\":{\"id\":\"" + tt3 + "'\",\"name\":\"" + tt3 + "\",\"nodes\":[{\"nodeid\":\"1787\"},{\"nodeid\":\"1788\"}],\"room_id\":\"1\"},\"nodeid\":\"*\",\"opcode\":\"SET_ZIGBEE_GROUP\",\"requester\":\"HJ_Config\"}$"
+		try:
+			s.send(SET_ZIGBEE_GROUP1.encode('utf-8'))
+			logging.info('SET_ZIGBEE_GROUP1:%s', SET_ZIGBEE_GROUP1.encode('utf-8'))
+			tt2 += 1
+
+		except socket.error as msg:
+			print(msg)
+			sys.exit(1)
 
 	tt = 2
 	while tt:
