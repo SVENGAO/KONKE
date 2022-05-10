@@ -124,53 +124,6 @@ def Get_license_data(k):
 			con.close()
 
 
-# 通过接口获取key,已废弃
-def Get_license(k):
-	"""
-	通过主机号拿到主机Accesskey
-	:param :i,传入的主机号，用来查询主机的license
-	:return: list 封装的主机号CCU_ID,主机的key,license
-	"""
-	global m
-
-	list1 = {}
-	r3 = Yunweipingtai.LSC_SWITCH_ON(k)
-	logging.info(r3)
-	url_CCU = "http://120.27.45.207:17001/" + k + "/info"
-	print(url_CCU)
-	r1 = requests.get(url_CCU).json()  # 获取主机LSC状态的请求
-
-	if 'online' in r1:
-		# 测试环境换成下面这个
-		# if r1:
-		m += 1
-		logging.info("第%d个在线主机,主机号:%s, 主机URL：%s" % (m, k, url_CCU))
-		url_Key = "http://172.25.240.37:8989/metadata-server/1.0/ccu/" + k + "/ccuRegInfo"
-
-		r2 = requests.get(url_Key, headers=headers2).json()
-		# time.sleep(1)
-		# print(r2)
-		logging.info("r2获取主机注册信息 %s", r2)
-
-		if 'code' in r2:
-			# print(r2['code'])
-			if r2['code'] == 200:
-				license_ccu = r2['data']['qrToken']
-				CCU_ID = r2['data']['accountName']
-				# logging.info("主机号:%s, 主机license：%s" % (CCU_ID, license))
-				list1.setdefault('CCU', CCU_ID)
-				list1.setdefault('KEY', license_ccu)
-				logging.info("主机号:%s, 主机license：%s" % (CCU_ID, license_ccu))
-				# print(list1)
-				return list1
-		# elif 'status' in r2:
-		# 	logging.info("获取主机注册信息失败，%s", r2['status'])
-		else:
-			logging.info("获取主机注册信息失败，可能好似网络链接不上")
-	else:
-		logging.info("主机可能不在线")
-
-
 def socket_client(env):
 	"""
 	客户端 发送socket功能

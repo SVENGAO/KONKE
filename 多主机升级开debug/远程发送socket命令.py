@@ -199,8 +199,8 @@ def socket_client(env):
 	s.send(data)
 	logging.info('发送socket登录报文:%s', data)
 	# 1、开启debug日志开关，需要时打开注释
-	# s.send(debugOn.encode('utf-8'))
-	# logging.info('发送开启debug日志报文:%s', debugOn)
+	s.send(debugOn.encode('utf-8'))
+	logging.info('发送开启debug日志报文:%s', debugOn)
 	# 2、9531升级开关
 	# s.send(upgrade_9531.encode('utf-8'))
 	# logging.info('发送9531升级报文:%s', upgrade_9531)
@@ -226,10 +226,10 @@ def socket_client(env):
 	# s.send(NEW_VERSION_NOTIFY.encode('utf-8'))
 	# logging.info('NEW_VERSION_NOTIFY:%s', NEW_VERSION_NOTIFY.encode('utf-8'))
 	# 9、SET_ZIGBEE_GROUP
-	s.send(SET_ZIGBEE_GROUP.encode('utf-8'))
-	logging.info('SET_ZIGBEE_GROUP:%s', SET_ZIGBEE_GROUP.encode('utf-8'))
+	# s.send(SET_ZIGBEE_GROUP.encode('utf-8'))
+	# logging.info('SET_ZIGBEE_GROUP:%s', SET_ZIGBEE_GROUP.encode('utf-8'))
 
-	tt = 2
+	tt = 4
 	while tt:
 		try:
 			aa = s.recv(2048).decode('utf-8')
