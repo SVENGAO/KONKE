@@ -205,8 +205,8 @@ def socket_client(env):
 	# s.send(upgrade_9531.encode('utf-8'))
 	# logging.info('发送9531升级报文:%s', upgrade_9531)
 	# 3、智睿升级开关
-	# s.send(upgrade_zr.encode('utf-8'))
-	# logging.info('发送智睿升级报文:%s', upgrade_zr)
+	s.send(upgrade_zr.encode('utf-8'))
+	logging.info('发送智睿升级报文:%s', upgrade_zr)
 	# 4、GET_CCU_INFO
 	# s.send(GET_CCU_INFO.encode('utf-8'))
 	# logging.info('发送GET_CCU_INFO报文:%s', GET_CCU_INFO)
@@ -229,7 +229,7 @@ def socket_client(env):
 	# s.send(SET_ZIGBEE_GROUP.encode('utf-8'))
 	# logging.info('SET_ZIGBEE_GROUP:%s', SET_ZIGBEE_GROUP.encode('utf-8'))
 
-	tt = 4
+	tt = 2
 	while tt:
 		try:
 			aa = s.recv(2048).decode('utf-8')

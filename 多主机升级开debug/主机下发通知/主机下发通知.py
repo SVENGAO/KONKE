@@ -10,7 +10,7 @@ def Notion_CCU():
 	通知大主机有新版本升级提示
 	"""
 
-	f = open('123.txt', "r")
+	f = open('本地发送socket报文主机号.json', "r")
 	a = json.load(f)
 
 	for i in a:  # I 代表主机号
@@ -95,8 +95,8 @@ def Getversion_CCU_BY_CCU():
 
 if __name__ == '__main__':
 	# 通知大主机有新版本升级提示
-	# Notion_CCU()
+	Notion_CCU()
 	# 获取到主机版本号
 	# Getversion_CCU()
 	# 获取到主机版本号
-	Getversion_CCU_BY_CCU()
+	# Getversion_CCU_BY_CCU()
