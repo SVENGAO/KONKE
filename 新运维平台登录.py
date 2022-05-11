@@ -3,7 +3,7 @@ import requests
 # 新运维平台需要更换token，有效期24H
 headers = {
 	'content-type': 'application/json',
-	'token': 'APPLICATION:eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJsZWFkZXIiOiIyIiwibmlja25hbWUiOiLpq5jpobrls7AiLCJ0ZW5hbnRJZCI6IjU4OGFjYTE2YzFlZTQzMWM4ZGE1YmZkZGM3MjI5ZDg2IiwidGltZSI6IjE2NTIxNDYzNjE4MDEiLCJleHAiOjE2NTIyMzI3NjEsInVzZXJJZCI6IjhhNWVlZTVhNzczNTRhNDZiNWUxZjg5OTJmZTJmZjYzIiwiaWF0IjoxNjUyMTQ2MzYxLCJlbWFpbCI6Imdhby5zaHVuZmVuZ0Bpa29ua2UuY29tIiwib3JnSWQiOiJkMWQ4ZWFhZWU5YTk0NDJmOGI2ZmViNDVhNDRhMmNlNiIsInVzZXJuYW1lIjoiMTg2NTY1MDg4NjAifQ.yMQgwPE4y4HLwi4b687vKtdEv9EjfHQXnsW7LxuTAd4'
+	'token': 'APPLICATION:eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJsZWFkZXIiOiIyIiwibmlja25hbWUiOiLpq5jpobrls7AiLCJ0ZW5hbnRJZCI6IjU4OGFjYTE2YzFlZTQzMWM4ZGE1YmZkZGM3MjI5ZDg2IiwidGltZSI6IjE2NTIyMzI4MjMwMDYiLCJleHAiOjE2NTIzMTkyMjMsInVzZXJJZCI6IjhhNWVlZTVhNzczNTRhNDZiNWUxZjg5OTJmZTJmZjYzIiwiaWF0IjoxNjUyMjMyODIzLCJlbWFpbCI6Imdhby5zaHVuZmVuZ0Bpa29ua2UuY29tIiwib3JnSWQiOiJkMWQ4ZWFhZWU5YTk0NDJmOGI2ZmViNDVhNDRhMmNlNiIsInVzZXJuYW1lIjoiMTg2NTY1MDg4NjAifQ.AWpgRTiWme1vszXbAOzn2PfOMRzSm501j15gWJZgvsc'
 }
 
 
@@ -35,10 +35,7 @@ def Sent_Sockit(CCU, data):
 	:param data: 拆入主机环境
 	:param CCU: 传入主机号开启LSC
 	"""
-	# r4 = LSC_TEST.LSC_OPEN(i)
 	url = "https://oms.ikonke.com:10000/host-maintenance-server/1.0/ccu/opt/" + CCU + "/request"
-	# data = {"nodeid": "*", "opcode": "GET_CCU_INFO", "requester": "HJ_Server", "timeout": 15, "arg": "*"}
-	# print(data)
 	try:
 		r = requests.post(url, headers=headers, json=data).json()
 		# print(r)
