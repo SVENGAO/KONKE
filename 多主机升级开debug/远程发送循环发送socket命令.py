@@ -179,13 +179,13 @@ def socket_client(env):
 	# s.send(NEW_VERSION_NOTIFY.encode('utf-8'))
 	# logging.info('NEW_VERSION_NOTIFY:%s', NEW_VERSION_NOTIFY.encode('utf-8'))
 	# 9、SET_ZIGBEE_GROUP
-	tt1 = 284
-	tt2 = 244
+	tt1 = 364
+	tt2 = 324
 	while tt2 < tt1:
 		time.sleep(10)
 		print(tt2)
 		tt3 = str(tt2)
-		SET_ZIGBEE_GROUP1 = "!{\"arg\":{\"id\":\"" + tt3 + "\",\"name\":\"" + tt3 + "\",\"nodes\":[{\"nodeid\":\"445\"},{\"nodeid\":\"498\"}],\"room_id\":\"8\"},\"nodeid\":\"*\",\"opcode\":\"SET_ZIGBEE_GROUP\",\"requester\":\"HJ_Config\"}$"
+		SET_ZIGBEE_GROUP1 = "!{\"arg\":{\"id\":\"" + tt3 + "\",\"name\":\"" + tt3 + "\",\"nodes\":[{\"nodeid\":\"456\"},{\"nodeid\":\"566\"}],\"room_id\":\"10\"},\"nodeid\":\"*\",\"opcode\":\"SET_ZIGBEE_GROUP\",\"requester\":\"HJ_Config\"}$"
 		DELETE_ZIGBEE_GROUP = "!{\"nodeid\":\"*\",\"opcode\":\"DELETE_ZIGBEE_GROUP\",\"arg\":\"\",\"requester\":\"HJ_Config\"}$"
 		# print(SET_ZIGBEE_GROUP1)
 		# tt2 += 1

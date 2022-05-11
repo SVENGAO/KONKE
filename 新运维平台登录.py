@@ -28,6 +28,25 @@ def LSC_SWITCH_ON(CCU, env="nation"):
 		print(e)
 
 
+#  发送报文
+def Sent_Sockit(CCU, data):
+	"""
+	开起LSC
+	:param data: 拆入主机环境
+	:param CCU: 传入主机号开启LSC
+	"""
+	# r4 = LSC_TEST.LSC_OPEN(i)
+	url = "https://oms.ikonke.com:10000/host-maintenance-server/1.0/ccu/opt/" + CCU + "/request"
+	# data = {"nodeid": "*", "opcode": "GET_CCU_INFO", "requester": "HJ_Server", "timeout": 15, "arg": "*"}
+	# print(data)
+	try:
+		r = requests.post(url, headers=headers, json=data).json()
+		# print(r)
+		return r
+	except Exception as e:
+		print(e)
+
+
 # 拿端口
 def LSC_GET_PORT(CCU, env):
 	"""

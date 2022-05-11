@@ -18,7 +18,7 @@ P15_6730 = 'wget -O /tmp/KK-CC-J86.bin http://web.nj-ikonke.site:20001/ccu_packa
 
 P14_6725 = 'wget -O /tmp/KK-CC-E86.bin http://web.nj-ikonke.site:20001/ccu_package/kkfirmware/KK-CC-E86-p14/2.67.25/20220329161326/KK-CC-E86.bin;sleep 3;sysupgrade /tmp/KK-CC-E86.bin'
 P14_6008 = 'wget -O /tmp/KK-CC-E86.bin http://web.nj-ikonke.site:20001/ccu_package/kkfirmware/KK-CC-E86-p14/2.60.8/20210622194552/KK-CC-E86.bin;sleep 3;sysupgrade /tmp/KK-CC-E86.bin'
-P14_5617 = 'wget -O /tmp/KK-CC-E86.bin http://web.nj-ikonke.site:20001/ccu_package/kkfirmware/KK-CC-E86-p14/2.56.17/20210115142416/KK-CC-E86.bin;sleep 3;sysupgrade /tmp/KK-CC-E86.bin'
+P14_5208 = 'wget -O /tmp/KK-CC-E86.bin http://web.nj-ikonke.site:20001/ccu_package/kkfirmware/KK-CC-E86-p14/2.52.8/20200711091502/KK-CC-E86.bin;sleep 3;sysupgrade /tmp/KK-CC-E86.bin'
 P14_6730 = 'wget -O /tmp/KK-CC-E86.bin http://web.nj-ikonke.site:20001/ccu_package/kkfirmware/KK-CC-E86-p14/2.67.30/20220428204750/KK-CC-E86.bin;sleep 3;sysupgrade /tmp/KK-CC-E86.bin'
 ssh_cmd = P8_6730
 
