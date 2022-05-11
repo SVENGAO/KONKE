@@ -4,7 +4,6 @@ import sys
 import psycopg2
 import requests
 import time
-import socket
 import 新运维平台登录 as Yunweipingtai
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s: %(message)s')
