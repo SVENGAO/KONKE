@@ -15,6 +15,9 @@ global LOGIN
 m = 0
 global j
 global license
+
+# url请求头认证。accessToken固定不变
+headers2 = {'accessToken': 'B539B6A0W17045CGA90B7D38EJFC22V6'}
 # 升级需要更换地址
 address_9531 = "http://web.nj-ikonke.site:20001/ccu_package/kkfirmware/ap86-key-p12/2.67.29/20220422144525/kk-9531-ap86-key.bin"
 
@@ -29,8 +32,9 @@ SET_WORK_TEMPERATURE = "!{\"nodeid\":\"509\",\"opcode\": \"SET_WORK_TEMPERATURE\
 GET_COORD_VERSION = "!{\"nodeid\":\"656\",\"opcode\":\"GET_COORD_VERSION\",\"arg\": \"*\",\"requester\":\"HJ_Server\"}$"
 NEW_VERSION_NOTIFY = "!{\"nodeid\":\"656\",\"opcode\":\"NEW_VERSION_NOTIFY\",\"arg\":{\"new_version\":\"2.2.0\"},\"requester\":\"HJ_Server\"}$"
 SET_ZIGBEE_GROUP = "!{\"arg\":{\"id\":\"1\",\"name\":\"123\",\"nodes\":[{\"nodeid\":\"1306\"},{\"nodeid\":\"1304\"}],\"room_id\":\"1\"},\"nodeid\":\"*\",\"opcode\":\"SET_ZIGBEE_GROUP\",\"requester\":\"HJ_Config\"}$"
-# url请求头认证。accessToken固定不变
-headers2 = {'accessToken': 'B539B6A0W17045CGA90B7D38EJFC22V6'}
+
+# 从上面选择更换需要发送的报文
+SendMessage = debugOn
 
 
 def get_CCU():
@@ -39,15 +43,11 @@ def get_CCU():
 	"""
 	f = open('远程发送socket命令主机号.json', "r")
 	a = json.load(f)
-
 	for i in a:  # I 代表主机号
 		logging.info('获取到的CCU信息%s', i)
 		if i:
-			#  接口获取key
-			# r3 = Get_license(i)
 			# 通过数据库获取key
 			r3 = Get_license_data(i)
-
 			logging.info("接受到的主机信息:%s", r3)
 			r4 = Yunweipingtai.LSC_SWITCH_ON(i, a[i])
 			logging.info("接受到的LSC信息:%s", r4)
@@ -124,53 +124,6 @@ def Get_license_data(k):
 			con.close()
 
 
-# 通过接口获取key,已废弃
-def Get_license(k):
-	"""
-	通过主机号拿到主机Accesskey
-	:param :i,传入的主机号，用来查询主机的license
-	:return: list 封装的主机号CCU_ID,主机的key,license
-	"""
-	global m
-
-	list1 = {}
-	r3 = Yunweipingtai.LSC_SWITCH_ON(k)
-	logging.info(r3)
-	url_CCU = "http://120.27.45.207:17001/" + k + "/info"
-	print(url_CCU)
-	r1 = requests.get(url_CCU).json()  # 获取主机LSC状态的请求
-
-	if 'online' in r1:
-		# 测试环境换成下面这个
-		# if r1:
-		m += 1
-		logging.info("第%d个在线主机,主机号:%s, 主机URL：%s" % (m, k, url_CCU))
-		url_Key = "http://172.25.240.37:8989/metadata-server/1.0/ccu/" + k + "/ccuRegInfo"
-
-		r2 = requests.get(url_Key, headers=headers2).json()
-		# time.sleep(1)
-		# print(r2)
-		logging.info("r2获取主机注册信息 %s", r2)
-
-		if 'code' in r2:
-			# print(r2['code'])
-			if r2['code'] == 200:
-				license_ccu = r2['data']['qrToken']
-				CCU_ID = r2['data']['accountName']
-				# logging.info("主机号:%s, 主机license：%s" % (CCU_ID, license))
-				list1.setdefault('CCU', CCU_ID)
-				list1.setdefault('KEY', license_ccu)
-				logging.info("主机号:%s, 主机license：%s" % (CCU_ID, license_ccu))
-				# print(list1)
-				return list1
-		# elif 'status' in r2:
-		# 	logging.info("获取主机注册信息失败，%s", r2['status'])
-		else:
-			logging.info("获取主机注册信息失败，可能好似网络链接不上")
-	else:
-		logging.info("主机可能不在线")
-
-
 def socket_client(env):
 	"""
 	客户端 发送socket功能
@@ -198,37 +151,9 @@ def socket_client(env):
 	# print("socket发送的data:", data)
 	s.send(data)
 	logging.info('发送socket登录报文:%s', data)
-	# 1、开启debug日志开关，需要时打开注释
-	s.send(debugOn.encode('utf-8'))
-	logging.info('发送开启debug日志报文:%s', debugOn)
-	# 2、9531升级开关
-	# s.send(upgrade_9531.encode('utf-8'))
-	# logging.info('发送9531升级报文:%s', upgrade_9531)
-	# 3、智睿升级开关
-	# s.send(upgrade_zr.encode('utf-8'))
-	# logging.info('发送智睿升级报文:%s', upgrade_zr)
-	# 4、GET_CCU_INFO
-	# s.send(GET_CCU_INFO.encode('utf-8'))
-	# logging.info('发送GET_CCU_INFO报文:%s', GET_CCU_INFO)
-	# 5、GET_NODE_APP_ARGS
-	# s.send(GET_NODE_APP_ARGS.encode('utf-8'))
-	# logging.info('发送GET_NODE_APP_ARGS报文:%s', GET_NODE_APP_ARGS)
-	# 6、GET_CCU_INFO
-	# s.send(GET_ZIGBEE_DEVS_HW_INFO.encode('utf-8'))
-	# logging.info('发送GET_ZIGBEE_DEVS_HW_INFO报文:%s', GET_ZIGBEE_DEVS_HW_INFO.encode('utf-8'))
-	# s.send(SET_WORK_TEMPERATURE.encode('utf-8'))
-	# logging.info('发送SET_WORK_TEMPERATURE报文:%s', SET_WORK_TEMPERATURE.encode('utf-8'))
-	# 打印发送后前2条报文
-	# 7、GET_COORD_VERSION
-	# s.send(GET_COORD_VERSION.encode('utf-8'))
-	# logging.info('GET_COORD_VERSION:%s', GET_COORD_VERSION.encode('utf-8'))
-	# 8、NEW_VERSION_NOTIFY
-	# s.send(NEW_VERSION_NOTIFY.encode('utf-8'))
-	# logging.info('NEW_VERSION_NOTIFY:%s', NEW_VERSION_NOTIFY.encode('utf-8'))
-	# 9、SET_ZIGBEE_GROUP
-	# s.send(SET_ZIGBEE_GROUP.encode('utf-8'))
-	# logging.info('SET_ZIGBEE_GROUP:%s', SET_ZIGBEE_GROUP.encode('utf-8'))
-
+	# 1、发送报文
+	s.send(SendMessage.encode('utf-8'))
+	logging.info('发送报文:%s', SendMessage)
 	tt = 4
 	while tt:
 		try:
@@ -238,7 +163,6 @@ def socket_client(env):
 		except socket.error as msg:
 			print(msg)
 			sys.exit(1)
-	# time.sleep(5)
 	s.close()
 
 
