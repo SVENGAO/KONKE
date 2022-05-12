@@ -8,16 +8,16 @@ import 新运维平台登录 as Yunweipingtai
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s: %(message)s')
 GET_CCU_INFO = {"nodeid": "*", "opcode": "GET_CCU_INFO", "requester": "HJ_Server", "timeout": 15, "arg": "*"}
-
+SET_LOG_CONFIG = {"arg": {"log_leave": "-A"}, "nodeid": "*", "opcode": "SET_LOG_CONFIG", "requester": "HJ_Server"}
 CCU = 'CCU_189870'
-data = GET_CCU_INFO
+data = SET_LOG_CONFIG
 
 f = open('多个主机循环发送.json', "r")
 a = json.load(f)
 for CCU in a:  # I 代表主机号
 	logging.info('获取到的CCU信息%s', CCU)
 	if CCU:
-		count = 2   # count 代表循环次数
+		count = 1  # count 代表循环次数
 		for i in (1, count):
 			print(i)
 			r = Yunweipingtai.Sent_Sockit(CCU, data)
