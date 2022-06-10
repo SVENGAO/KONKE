@@ -11,7 +11,7 @@ OTA_COORD_UPGRADE = {
 	"requester": "HJ_Server"
 }
 
-CCU = 'CCU_189870'
+CCU = 'CCU_21312'
 data = GET_CCU_INFO
 r = Yunweipingtai.Sent_Sockit(CCU, data)
 print(r)

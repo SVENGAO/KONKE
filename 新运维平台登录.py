@@ -3,7 +3,7 @@ import requests
 # 新运维平台需要更换token，有效期24H
 headers = {
 	'content-type': 'application/json',
-	'token': 'APPLICATION:eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJsZWFkZXIiOiIyIiwibmlja25hbWUiOiLpq5jpobrls7AiLCJ0ZW5hbnRJZCI6IjU4OGFjYTE2YzFlZTQzMWM4ZGE1YmZkZGM3MjI5ZDg2IiwidGltZSI6IjE2NTI5MzE5MDc4ODkiLCJleHAiOjE2NTMwMTgzMDcsInVzZXJJZCI6IjhhNWVlZTVhNzczNTRhNDZiNWUxZjg5OTJmZTJmZjYzIiwiaWF0IjoxNjUyOTMxOTA3LCJlbWFpbCI6Imdhby5zaHVuZmVuZ0Bpa29ua2UuY29tIiwib3JnSWQiOiJkMWQ4ZWFhZWU5YTk0NDJmOGI2ZmViNDVhNDRhMmNlNiIsInVzZXJuYW1lIjoiMTg2NTY1MDg4NjAifQ.N3-fQgkOAQORuk4eWpS0m-Yh5ax8eBHDaLQNF57K3-Q'
+	'token': 'APPLICATION:eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJsZWFkZXIiOiIyIiwibmlja25hbWUiOiLpq5jpobrls7AiLCJ0ZW5hbnRJZCI6IjU4OGFjYTE2YzFlZTQzMWM4ZGE1YmZkZGM3MjI5ZDg2IiwidGltZSI6IjE2NTQ3NTUyNTkzODUiLCJleHAiOjE2NTQ4NDE2NTksInVzZXJJZCI6IjhhNWVlZTVhNzczNTRhNDZiNWUxZjg5OTJmZTJmZjYzIiwiaWF0IjoxNjU0NzU1MjU5LCJlbWFpbCI6Imdhby5zaHVuZmVuZ0Bpa29ua2UuY29tIiwib3JnSWQiOiJkMWQ4ZWFhZWU5YTk0NDJmOGI2ZmViNDVhNDRhMmNlNiIsInVzZXJuYW1lIjoiMTg2NTY1MDg4NjAifQ.evFuMjhnwMU5fjCkMI0irqIOmHu_nLlnnFm9D-QbtN0'
 }
 
 
@@ -32,12 +32,27 @@ def LSC_SWITCH_ON(CCU, env="nation"):
 def Sent_Sockit(CCU, data):
 	"""
 	开起LSC
-	:param data: 拆入主机环境
+	:param data: 传入主机环境
 	:param CCU: 传入主机号开启LSC
 	"""
+	ON = {
+		"nodeid": "293",
+		"opcode": "SWITCH",
+		"requester": "HJ_Server",
+		"timeout": 6,
+		"arg": "ON"
+	}
+	OFF = {
+		"nodeid": "293",
+		"opcode": "SWITCH",
+		"requester": "HJ_Server",
+		"timeout": 6,
+		"arg": "OFF"
+	}
 	url = "https://oms.ikonke.com:10000/host-maintenance-server/1.0/ccu/opt/" + CCU + "/request"
 	try:
-		r = requests.post(url, headers=headers, json=data).json()
+		r = requests.post(url, headers=headers, json=OFF).json()
+		r = requests.post(url, headers=headers, json=ON).json()
 		# print(r)
 		return r
 	except Exception as e:
