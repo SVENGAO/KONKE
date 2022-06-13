@@ -34,7 +34,7 @@ for CCU in a:  # I 代表主机号
 		count = 51  # count 代表循环次数
 		for i in range(1, count):
 			print(i)
-			time.sleep(180)
+			time.sleep(240)
 			r = Yunweipingtai.Sent_Sockit(CCU, data)
 			if 'status' in r:
 				if r['status'] == 'success':
