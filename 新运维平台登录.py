@@ -5,7 +5,7 @@ import requests
 # 新运维平台需要更换token，有效期24H
 headers = {
 	'content-type': 'application/json',
-	'token': 'APPLICATION:eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJsZWFkZXIiOiIyIiwibmlja25hbWUiOiLpq5jpobrls7AiLCJ0ZW5hbnRJZCI6IjU4OGFjYTE2YzFlZTQzMWM4ZGE1YmZkZGM3MjI5ZDg2IiwidGltZSI6IjE2NTQ4NDI0MTcxMzciLCJleHAiOjE2NTQ5Mjg4MTcsInVzZXJJZCI6IjhhNWVlZTVhNzczNTRhNDZiNWUxZjg5OTJmZTJmZjYzIiwiaWF0IjoxNjU0ODQyNDE3LCJlbWFpbCI6Imdhby5zaHVuZmVuZ0Bpa29ua2UuY29tIiwib3JnSWQiOiJkMWQ4ZWFhZWU5YTk0NDJmOGI2ZmViNDVhNDRhMmNlNiIsInVzZXJuYW1lIjoiMTg2NTY1MDg4NjAifQ.XS2o4vM0b_Lz79rURAr6az4vC3-C9jo5z0twn9htnIA'
+	'token': 'APPLICATION:eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJsZWFkZXIiOiIyIiwibmlja25hbWUiOiLpq5jpobrls7AiLCJ0ZW5hbnRJZCI6IjU4OGFjYTE2YzFlZTQzMWM4ZGE1YmZkZGM3MjI5ZDg2IiwidGltZSI6IjE2NTUwODQ3Mjg3NDUiLCJleHAiOjE2NTUxNzExMjgsInVzZXJJZCI6IjhhNWVlZTVhNzczNTRhNDZiNWUxZjg5OTJmZTJmZjYzIiwiaWF0IjoxNjU1MDg0NzI4LCJlbWFpbCI6Imdhby5zaHVuZmVuZ0Bpa29ua2UuY29tIiwib3JnSWQiOiJkMWQ4ZWFhZWU5YTk0NDJmOGI2ZmViNDVhNDRhMmNlNiIsInVzZXJuYW1lIjoiMTg2NTY1MDg4NjAifQ.LZw0-wqIuEvvPVGbtMpRHWXsDvynOa4whljZ2jm_gYk'
 }
 
 
@@ -53,10 +53,11 @@ def Sent_Sockit(CCU, data):
 	}
 	url = "https://oms.ikonke.com:10000/host-maintenance-server/1.0/ccu/opt/" + CCU + "/request"
 	try:
-		r1 = requests.post(url, headers=headers, json=OFF).json()
+		r = requests.post(url, headers=headers, json=OFF).json()
+		print(r)
 		time.sleep(1)
-		r = requests.post(url, headers=headers, json=ON).json()
-		# print(r)
+		r = requests.post(url, headers=headers, json=data).json()
+		print(r)
 		return r
 	except Exception as e:
 		print(e)

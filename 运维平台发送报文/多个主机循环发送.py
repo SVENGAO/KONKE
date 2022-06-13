@@ -46,3 +46,4 @@ for CCU in a:  # I 代表主机号
 			else:
 				logging.error("接受到的主机%s回复opcode%s信息:%s" % (CCU, data['opcode'], r))
 			logging.info("%s主机第%s次获取消息" % (CCU, i))
+
